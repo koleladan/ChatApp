@@ -1,9 +1,11 @@
 package com.example.chatapp
 
 import android.app.ProgressDialog
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.chatapp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -15,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -55,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
 
                 }else{
                     progressDialog.dismiss()
+                    Log.e(ContentValues.TAG, "signinWithCustomToken:failure", task.exception)
                     Toast.makeText(applicationContext, "User does not exist",Toast.LENGTH_SHORT).show()
                 }
             }
